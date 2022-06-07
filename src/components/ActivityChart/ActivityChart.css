@@ -1,0 +1,11 @@
+.custom-tooltip {
+  background-color: red;
+  color: white;
+  font-size: 7px;
+  text-align: center;
+  width: 40px;
+  padding: 5px 0;
+}
+.activity-chart-container .recharts-legend-item-text {
+  font-size: 14px;
+}
