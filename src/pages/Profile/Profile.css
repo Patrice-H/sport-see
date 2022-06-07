@@ -5,3 +5,16 @@
 .profile-name {
   color: red;
 }
+.activity-chart-container {
+  background-color: #fbfbfb;
+  width: 58%;
+  height: 260px;
+  margin-left: 225px;
+  margin-top: 130px;
+  padding: 30px 0;
+  position: relative;
+  border-radius: 5px;
+}
+.activity-chart-title {
+  margin: 0 30px;
+}
