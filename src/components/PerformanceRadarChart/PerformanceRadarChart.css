@@ -1,0 +1,20 @@
+.performance-chart-container {
+  width: 100%;
+  height: 100%;
+  background-color: #282d30;
+  border-radius: 5px;
+  position: relative;
+}
+.performance-chart-container .recharts-polar-grid-angle line {
+  display: none;
+}
+.recharts-polar-angle-axis-tick:nth-child(1) {
+  transform: translateY(-10px);
+}
+.recharts-polar-angle-axis-tick:nth-child(3),
+.recharts-polar-angle-axis-tick:nth-child(5) {
+  transform: translateY(7px);
+}
+.recharts-polar-angle-axis-tick:nth-child(4) {
+  transform: translateY(15px);
+}
