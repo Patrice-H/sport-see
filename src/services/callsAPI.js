@@ -17,3 +17,9 @@ export const getUserSessions = (userId) => {
     .get(`http://localhost:3000/user/${userId}/average-sessions`)
     .catch((error) => console.log(error));
 };
+
+export const getUserPerformance = (userId) => {
+  return axios
+    .get(`http://localhost:3000/user/${userId}/performance`)
+    .catch((error) => console.log(error));
+};
