@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import ActivityChart from '../../components/ActivityChart';
 import HorizontalNavbar from '../../components/HorizontalNavbar';
 import SessionsLineChart from '../../components/SessionsLineChart';
+import PerformanceRadarChart from '../../components/PerformanceRadarChart';
 import VerticalNavbar from '../../components/VerticalNavbar';
 import {
   getUserInformations,
   getUserActivity,
   getUserSessions,
+  getUserPerformance,
 } from '../../services/callsAPI';
 import './Profile.css';
 
@@ -16,6 +18,7 @@ const Profile = () => {
   const [profileData, setProfileData] = useState();
   const [userActivity, setUserActivity] = useState();
   const [userSessions, setUserSessions] = useState();
+  const [userPerformance, setUserPerformance] = useState();
 
   useEffect(() => {
     getUserInformations(parseInt(param.profileId)).then((res) => {
@@ -28,7 +31,11 @@ const Profile = () => {
 
     getUserSessions(parseInt(param.profileId)).then((res) => {
       setUserSessions(res.data.data.sessions);
-      console.log(res.data.data.sessions);
+    });
+
+    getUserPerformance(parseInt(param.profileId)).then((res) => {
+      setUserPerformance(res.data.data);
+      console.log(res.data.data);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,6 +58,14 @@ const Profile = () => {
         <div className="triple-charts">
           <div className="sessions-chart">
             <SessionsLineChart data={userSessions} />
+          </div>
+          <div className="performance-chart">
+            {userPerformance && (
+              <PerformanceRadarChart
+                data={userPerformance.data}
+                kind={userPerformance.kind}
+              />
+            )}
           </div>
         </div>
       </div>
