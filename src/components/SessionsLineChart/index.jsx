@@ -47,7 +47,7 @@ const SessionsLineChart = ({ data }) => {
   return (
     <article className="sessions-chart-container">
       <SessionsChartTitle />
-      <ResponsiveContainer width="100%" height={263}>
+      <ResponsiveContainer>
         <AreaChart
           data={data}
           margin={{ top: 0, right: 20, left: 20, bottom: -30 }}

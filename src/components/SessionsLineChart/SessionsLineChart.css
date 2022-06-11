@@ -1,6 +1,8 @@
 .sessions-chart-container {
   width: 100%;
   height: 100%;
+  background-color: red;
+  border-radius: 5px;
   position: relative;
 }
 .sessions-chart-container .custom-tooltip {
