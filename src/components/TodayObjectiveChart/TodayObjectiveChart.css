@@ -1,0 +1,33 @@
+.today-objective-chart-container {
+  width: 100%;
+  height: 100%;
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  position: relative;
+}
+.score-title {
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  margin: 0;
+}
+.score-text-container {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 90px;
+}
+.score-quantity {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0;
+}
+.score-text {
+  color: #74798c;
+  line-height: 26px;
+  width: 40%;
+  margin: 10px auto;
+}
