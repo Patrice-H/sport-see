@@ -8,6 +8,7 @@
 .all-charts-container {
   width: 58%;
   margin-left: 225px;
+  position: relative;
 }
 .activity-chart {
   background-color: #fbfbfb;
@@ -20,12 +21,17 @@
 }
 .triple-charts {
   margin-top: 20px;
+  width: 100%;
   height: 263px;
   display: flex;
   gap: 30px;
 }
 .sessions-chart,
-.performance-chart {
-  width: 33%;
+.performance-chart,
+.today-objective-chart {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 30%;
   height: 100%;
 }

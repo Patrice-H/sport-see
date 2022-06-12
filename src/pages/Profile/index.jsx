@@ -12,6 +12,7 @@ import {
   getUserPerformance,
 } from '../../services/callsAPI';
 import './Profile.css';
+import TodayObjectiveChart from '../../components/TodayObjectiveChart';
 
 const Profile = () => {
   const param = useParams();
@@ -19,10 +20,16 @@ const Profile = () => {
   const [userActivity, setUserActivity] = useState();
   const [userSessions, setUserSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
+  const [userTodayScore, setUserTodayScore] = useState();
 
   useEffect(() => {
     getUserInformations(parseInt(param.profileId)).then((res) => {
       setProfileData(res.data.data);
+      if (res.data.data.todayScore !== undefined) {
+        setUserTodayScore(res.data.data.todayScore);
+      } else {
+        setUserTodayScore(res.data.data.score);
+      }
     });
 
     getUserActivity(parseInt(param.profileId)).then((res) => {
@@ -35,7 +42,6 @@ const Profile = () => {
 
     getUserPerformance(parseInt(param.profileId)).then((res) => {
       setUserPerformance(res.data.data);
-      console.log(res.data.data);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,6 +72,9 @@ const Profile = () => {
                 kind={userPerformance.kind}
               />
             )}
+          </div>
+          <div className="today-objective-chart">
+            {userTodayScore && <TodayObjectiveChart score={userTodayScore} />}
           </div>
         </div>
       </div>
