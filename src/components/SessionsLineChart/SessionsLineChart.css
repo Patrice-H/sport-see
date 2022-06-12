@@ -13,10 +13,14 @@
   background-color: white;
 }
 .sessions-chart-title {
+  font-size: 15px;
   color: white;
   opacity: 0.4;
   line-height: 24px;
   width: 66%;
   margin: 25px 30px;
   position: absolute;
+}
+.sessions-chart-container .recharts-cartesian-axis-ticks {
+  transform: scaleX(0.85) translateX(8.5%);
 }

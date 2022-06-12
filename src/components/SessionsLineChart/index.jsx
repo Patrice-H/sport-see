@@ -48,9 +48,10 @@ const SessionsLineChart = ({ data }) => {
     <article className="sessions-chart-container">
       <SessionsChartTitle />
       <ResponsiveContainer>
+        {/* margin={{ top: 0, right: 20, left: 20, bottom: -30 }} */}
         <AreaChart
           data={data}
-          margin={{ top: 0, right: 20, left: 20, bottom: -30 }}
+          margin={{ top: 0, right: 0, left: 0, bottom: -30 }}
         >
           <defs>
             <linearGradient id="areachart" x1="0" y1="0" x2="0" y2="1">
