@@ -31,6 +31,10 @@ const ActivityChartTitle = () => {
   return <p className="activity-chart-title">Activité quotidienne</p>;
 };
 
+const renderColorfulLegendText = (value) => {
+  return <span style={{ color: '#74798c' }}>{value}</span>;
+};
+
 const ActivityChart = ({ data }) => {
   return (
     <article className="activity-chart-container">
@@ -73,6 +77,7 @@ const ActivityChart = ({ data }) => {
             verticalAlign="top"
             iconType="circle"
             wrapperStyle={{ top: -20 }}
+            formatter={renderColorfulLegendText}
           />
           <Bar
             dataKey="kilogram"
