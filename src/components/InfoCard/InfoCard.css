@@ -1,0 +1,40 @@
+.info-card {
+  background-color: #fbfbfb;
+  height: 124px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-left: 32px;
+  border-radius: 5px;
+}
+.card-picture {
+  width: 60px;
+  height: 60px;
+  line-height: 68px;
+  text-align: center;
+  border-radius: 6px;
+}
+.calorie {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.protein {
+  background-color: rgba(74, 184, 255, 0.1);
+}
+.carbohydrate {
+  background-color: rgba(249, 206, 35, 0.1);
+}
+.lipid {
+  background-color: rgba(253, 81, 129, 0.1);
+}
+.text-value {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.text-legend {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #74798c;
+  margin: 0;
+}
