@@ -13,6 +13,7 @@ import {
 } from '../../services/callsAPI';
 import './Profile.css';
 import TodayObjectiveChart from '../../components/TodayObjectiveChart';
+import InfoCard from '../../components/InfoCard';
 
 const Profile = () => {
   const param = useParams();
@@ -48,37 +49,53 @@ const Profile = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <VerticalNavbar />
       <HorizontalNavbar />
-      <h1 className="profile-title">
-        <span>Bonjour </span>
-        <span className="profile-name">
-          {profileData && profileData.userInfos.firstName}
-        </span>
-      </h1>
-      <div className="all-charts-container">
-        <div className="activity-chart">
-          <ActivityChart data={userActivity} />
+      <main className="profile-main">
+        <h1 className="profile-title">
+          <span>Bonjour </span>
+          <span className="profile-name">
+            {profileData && profileData.userInfos.firstName}
+          </span>
+        </h1>
+        <div className="charts-cards-container">
+          <div className="all-charts-container">
+            <div className="activity-chart">
+              <ActivityChart data={userActivity} />
+            </div>
+            <div className="triple-charts">
+              <div className="sessions-chart">
+                <SessionsLineChart data={userSessions} />
+              </div>
+              <div className="performance-chart">
+                {userPerformance && (
+                  <PerformanceRadarChart
+                    data={userPerformance.data}
+                    kind={userPerformance.kind}
+                  />
+                )}
+              </div>
+              <div className="today-objective-chart">
+                {userTodayScore && (
+                  <TodayObjectiveChart score={userTodayScore} />
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="cards-container">
+            {profileData &&
+              Object.keys(profileData.keyData).map((key, index) => (
+                <InfoCard
+                  key={`${key}-${index}`}
+                  type={key.split('Count')[0]}
+                  value={Object.values(profileData.keyData)[index]}
+                />
+              ))}
+          </div>
         </div>
-        <div className="triple-charts">
-          <div className="sessions-chart">
-            <SessionsLineChart data={userSessions} />
-          </div>
-          <div className="performance-chart">
-            {userPerformance && (
-              <PerformanceRadarChart
-                data={userPerformance.data}
-                kind={userPerformance.kind}
-              />
-            )}
-          </div>
-          <div className="today-objective-chart">
-            {userTodayScore && <TodayObjectiveChart score={userTodayScore} />}
-          </div>
-        </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 
