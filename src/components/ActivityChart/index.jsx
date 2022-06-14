@@ -32,23 +32,30 @@ const ActivityChartTitle = () => {
 };
 
 const renderColorfulLegendText = (value) => {
-  return <span style={{ color: '#74798c' }}>{value}</span>;
+  return (
+    <span style={{ color: '#74798c', marginLeft: 8, marginRight: 20 }}>
+      {value}
+    </span>
+  );
 };
 
 const ActivityChart = ({ data }) => {
   return (
     <article className="activity-chart-container">
       <ActivityChartTitle />
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" aspect={2.6}>
         <BarChart
           data={data}
-          margin={{ top: 5, right: 0, left: 20, bottom: 5 }}
+          margin={{ top: 80, right: 5, left: 27, bottom: 30 }}
         >
           <CartesianGrid strokeDasharray="2 2" vertical={false} />
           <XAxis
             dataKey="day"
             tickFormatter={xAxisFormatter}
             tickLine={false}
+            fontSize={14}
+            fontWeight={500}
+            color="#9b9eac"
             dy={10}
           />
           <YAxis
@@ -59,6 +66,10 @@ const ActivityChart = ({ data }) => {
             yAxisId="right"
             axisLine={false}
             tickLine={false}
+            fontSize={14}
+            fontWeight={500}
+            color="#9b9eac"
+            dx={10}
           />
           <YAxis
             dataKey="calories"
@@ -76,7 +87,8 @@ const ActivityChart = ({ data }) => {
             align="right"
             verticalAlign="top"
             iconType="circle"
-            wrapperStyle={{ top: -20 }}
+            iconSize={8}
+            wrapperStyle={{ top: 30 }}
             formatter={renderColorfulLegendText}
           />
           <Bar

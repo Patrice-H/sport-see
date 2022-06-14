@@ -1,7 +1,3 @@
-.activity-chart-container {
-  width: 100%;
-  height: 100%;
-}
 .activity-chart-container .custom-tooltip {
   background-color: red;
   color: white;
@@ -12,8 +8,12 @@
 }
 .activity-chart-container .recharts-legend-item-text {
   font-size: 14px;
+  font-weight: 500;
 }
 .activity-chart-title {
   font-size: 15px;
-  margin: 0 30px;
+  font-weight: 500;
+  color: #20253a;
+  position: absolute;
+  margin: 30px;
 }

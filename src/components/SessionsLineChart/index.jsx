@@ -47,8 +47,7 @@ const SessionsLineChart = ({ data }) => {
   return (
     <article className="sessions-chart-container">
       <SessionsChartTitle />
-      <ResponsiveContainer>
-        {/* margin={{ top: 0, right: 20, left: 20, bottom: -30 }} */}
+      <ResponsiveContainer width="100%" aspect={0.98}>
         <AreaChart
           data={data}
           margin={{ top: 0, right: 0, left: 0, bottom: -30 }}
@@ -76,7 +75,12 @@ const SessionsLineChart = ({ data }) => {
             tickFormatter={xAxisFormatter}
             interval="preserveStartEnd"
             dy={-50}
-            tick={{ fill: 'white', opacity: 0.4 }}
+            tick={{
+              fill: 'white',
+              opacity: 0.4,
+              fontWeight: 500,
+              fontSize: 12,
+            }}
           />
           <YAxis
             axisLine={false}

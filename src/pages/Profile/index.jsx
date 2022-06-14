@@ -59,6 +59,9 @@ const Profile = () => {
             {profileData && profileData.userInfos.firstName}
           </span>
         </h1>
+        <p className="congratulations-text">
+          Félicitation ! Vous avez explosé vos objectifs hier 👏
+        </p>
         <div className="charts-cards-container">
           <div className="all-charts-container">
             <div className="activity-chart">

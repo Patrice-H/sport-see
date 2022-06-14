@@ -9,16 +9,16 @@ const TodayObjectiveChart = ({ score }) => {
   return (
     <article className="today-objective-chart-container">
       <h2 className="score-title">Score</h2>
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" aspect={0.98}>
         <RadialBarChart
           data={data}
-          barSize={10}
-          outerRadius="120%"
+          barSize={8}
+          outerRadius="110%"
           innerRadius="20%"
           startAngle={90}
           endAngle={450}
         >
-          <RadialBar dataKey="userScore" cornerRadius={5} />
+          <RadialBar dataKey="userScore" cornerRadius={4} />
         </RadialBarChart>
       </ResponsiveContainer>
       <div className="score-text-container">

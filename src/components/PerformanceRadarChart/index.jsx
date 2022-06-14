@@ -25,7 +25,7 @@ const PerformanceRadarChart = ({ data, kind }) => {
 
   return (
     <article className="performance-chart-container">
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" aspect={0.98}>
         <RadarChart
           data={data}
           margin={{ top: 0, right: 50, bottom: 0, left: 50 }}
@@ -35,7 +35,7 @@ const PerformanceRadarChart = ({ data, kind }) => {
           <PolarAngleAxis
             dataKey="kind"
             tickLine={{ fill: '#282D30' }}
-            tick={{ fill: 'white', fontSize: '12px' }}
+            tick={{ fill: 'white', fontSize: 12, fontWeight: 500 }}
             tickFormatter={angleAxisFormatter}
           />
           <PolarRadiusAxis

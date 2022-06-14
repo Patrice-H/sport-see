@@ -29,8 +29,6 @@ const InfoCard = ({ type, value }) => {
       break;
   }
 
-  console.log(`${type} : ${value}`);
-
   return (
     <article className="info-card">
       <div className={`card-picture ${type}`}>

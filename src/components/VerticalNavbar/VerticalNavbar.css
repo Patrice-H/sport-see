@@ -1,7 +1,7 @@
 .vertical-navbar {
   background-color: black;
   width: 118px;
-  height: 939px;
+  height: 100%;
   position: absolute;
   top: 85px;
   left: 0;
@@ -27,6 +27,7 @@
   color: white;
   transform: rotate(-90deg);
   width: 200px;
-  margin-left: -40px;
-  margin-top: 200px;
+  position: absolute;
+  bottom: 135px;
+  left: -41px;
 }

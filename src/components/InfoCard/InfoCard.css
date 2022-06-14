@@ -1,6 +1,7 @@
 .info-card {
   background-color: #fbfbfb;
-  height: 124px;
+  height: 20%;
+  max-height: 124px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -37,4 +38,9 @@
   line-height: 24px;
   color: #74798c;
   margin: 0;
+}
+@media (max-width: 1240px) {
+  .info-card {
+    padding-left: 24px;
+  }
 }
