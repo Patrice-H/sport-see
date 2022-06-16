@@ -1,51 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ActivityChart from '../../components/ActivityChart';
 import HorizontalNavbar from '../../components/HorizontalNavbar';
 import SessionsLineChart from '../../components/SessionsLineChart';
 import PerformanceRadarChart from '../../components/PerformanceRadarChart';
 import VerticalNavbar from '../../components/VerticalNavbar';
-import {
-  getUserInformations,
-  getUserActivity,
-  getUserSessions,
-  getUserPerformance,
-} from '../../services/callsAPI';
-import './Profile.css';
 import TodayObjectiveChart from '../../components/TodayObjectiveChart';
 import InfoCard from '../../components/InfoCard';
+import GetUserFirstName from '../../services/GetUserFirstName';
+import GetUserDailyActivities from '../../services/GetUserDailyActivities';
+import GetUserSessionsDuration from '../../services/GetUserSessionsDuration';
+import GetUserPerformanceStats from '../../services/GetUserPerformanceStats';
+import GetUserTodayScore from '../../services/GetUserTodayScore';
+import GetUserDataKeys from '../../services/GetUserDataKeys';
+import { dataSRC } from '../../utils/config';
+import './Profile.css';
+
+const displayDataSource = (src) => {
+  if (src === 'API') {
+    console.log('data from API');
+  } else {
+    console.log('data from mocked data');
+  }
+};
 
 const Profile = () => {
-  const param = useParams();
-  const [profileData, setProfileData] = useState();
-  const [userActivity, setUserActivity] = useState();
-  const [userSessions, setUserSessions] = useState();
-  const [userPerformance, setUserPerformance] = useState();
-  const [userTodayScore, setUserTodayScore] = useState();
+  const { profileId } = useParams();
+  const firstName = GetUserFirstName(profileId);
+  const dailyActivities = GetUserDailyActivities(profileId);
+  const sessionsDuration = GetUserSessionsDuration(profileId);
+  const performanceStats = GetUserPerformanceStats(profileId);
+  const todayScore = GetUserTodayScore(profileId);
+  const dataKeys = GetUserDataKeys(profileId);
 
   useEffect(() => {
-    getUserInformations(parseInt(param.profileId)).then((res) => {
-      setProfileData(res.data.data);
-      if (res.data.data.todayScore !== undefined) {
-        setUserTodayScore(res.data.data.todayScore);
-      } else {
-        setUserTodayScore(res.data.data.score);
-      }
-    });
-
-    getUserActivity(parseInt(param.profileId)).then((res) => {
-      setUserActivity(res.data.data.sessions);
-    });
-
-    getUserSessions(parseInt(param.profileId)).then((res) => {
-      setUserSessions(res.data.data.sessions);
-    });
-
-    getUserPerformance(parseInt(param.profileId)).then((res) => {
-      setUserPerformance(res.data.data);
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    displayDataSource(dataSRC);
   }, []);
 
   return (
@@ -55,9 +44,7 @@ const Profile = () => {
       <main className="profile-main">
         <h1 className="profile-title">
           <span>Bonjour </span>
-          <span className="profile-name">
-            {profileData && profileData.userInfos.firstName}
-          </span>
+          <span className="profile-name">{firstName}</span>
         </h1>
         <p className="congratulations-text">
           Félicitation ! Vous avez explosé vos objectifs hier 👏
@@ -65,34 +52,27 @@ const Profile = () => {
         <div className="charts-cards-container">
           <div className="all-charts-container">
             <div className="activity-chart">
-              <ActivityChart data={userActivity} />
+              <ActivityChart data={dailyActivities} />
             </div>
             <div className="triple-charts">
               <div className="sessions-chart">
-                <SessionsLineChart data={userSessions} />
+                <SessionsLineChart data={sessionsDuration} />
               </div>
               <div className="performance-chart">
-                {userPerformance && (
-                  <PerformanceRadarChart
-                    data={userPerformance.data}
-                    kind={userPerformance.kind}
-                  />
-                )}
+                <PerformanceRadarChart data={performanceStats} />
               </div>
               <div className="today-objective-chart">
-                {userTodayScore && (
-                  <TodayObjectiveChart score={userTodayScore} />
-                )}
+                <TodayObjectiveChart score={todayScore} />
               </div>
             </div>
           </div>
           <div className="cards-container">
-            {profileData &&
-              Object.keys(profileData.keyData).map((key, index) => (
+            {dataKeys &&
+              Object.keys(dataKeys).map((key, index) => (
                 <InfoCard
                   key={`${key}-${index}`}
                   type={key.split('Count')[0]}
-                  value={Object.values(profileData.keyData)[index]}
+                  value={Object.values(dataKeys)[index]}
                 />
               ))}
           </div>
