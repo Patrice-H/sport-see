@@ -8,7 +8,8 @@ import {
 } from 'recharts';
 import './PerformanceRadarChart.css';
 
-const PerformanceRadarChart = ({ data, kind }) => {
+const PerformanceRadarChart = ({ data }) => {
+  let performance = [];
   const angleAxisFormatter = (tick) => {
     //const activities = Object.values(kind).reverse();
     const activities = [
@@ -23,11 +24,20 @@ const PerformanceRadarChart = ({ data, kind }) => {
     return activities[tick - 1];
   };
 
+  if (data) {
+    for (let i = 0; i < data.length; i++) {
+      performance.push({
+        value: Object.values(data).reverse()[i].value,
+        kind: Object.values(data).reverse()[i].kind,
+      });
+    }
+  }
+
   return (
     <article className="performance-chart-container">
       <ResponsiveContainer width="100%" aspect={0.98}>
         <RadarChart
-          data={data}
+          data={performance}
           margin={{ top: 0, right: 50, bottom: 0, left: 50 }}
           cx="47%"
         >
