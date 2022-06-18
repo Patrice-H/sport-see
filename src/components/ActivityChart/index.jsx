@@ -8,6 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import PropTypes from 'prop-types';
 import './ActivityChart.css';
 
 const CustomTooltip = ({ active, payload }) => {
@@ -111,6 +112,10 @@ const ActivityChart = ({ data }) => {
       </ResponsiveContainer>
     </article>
   );
+};
+
+ActivityChart.prototype = {
+  data: PropTypes.array,
 };
 
 export default ActivityChart;

@@ -2,6 +2,7 @@ import calorieImg from '../../assets/calorie.png';
 import proteinImg from '../../assets/protein.png';
 import carbohydrateImg from '../../assets/carbohydrate.png';
 import lipidImg from '../../assets/lipid.png';
+import PropTypes from 'prop-types';
 import './InfoCard.css';
 
 const InfoCard = ({ type, value }) => {
@@ -52,6 +53,11 @@ const InfoCard = ({ type, value }) => {
       </div>
     </article>
   );
+};
+
+InfoCard.prototype = {
+  type: PropTypes.string,
+  value: PropTypes.number,
 };
 
 export default InfoCard;

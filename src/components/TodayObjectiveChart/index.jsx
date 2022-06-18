@@ -1,4 +1,5 @@
 import { RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
 import './TodayObjectiveChart.css';
 
 const TodayObjectiveChart = ({ score }) => {
@@ -27,6 +28,10 @@ const TodayObjectiveChart = ({ score }) => {
       </div>
     </article>
   );
+};
+
+TodayObjectiveChart.prototype = {
+  score: PropTypes.number,
 };
 
 export default TodayObjectiveChart;

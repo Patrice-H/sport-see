@@ -6,12 +6,12 @@ import {
   Radar,
   PolarRadiusAxis,
 } from 'recharts';
+import PropTypes from 'prop-types';
 import './PerformanceRadarChart.css';
 
 const PerformanceRadarChart = ({ data }) => {
   let performance = [];
   const angleAxisFormatter = (tick) => {
-    //const activities = Object.values(kind).reverse();
     const activities = [
       'Cardio',
       'Energie',
@@ -59,6 +59,10 @@ const PerformanceRadarChart = ({ data }) => {
       </ResponsiveContainer>
     </article>
   );
+};
+
+PerformanceRadarChart.prototype = {
+  data: PropTypes.array,
 };
 
 export default PerformanceRadarChart;
