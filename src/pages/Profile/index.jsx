@@ -15,6 +15,7 @@ import GetUserTodayScore from '../../services/GetUserTodayScore';
 import GetUserDataKeys from '../../services/GetUserDataKeys';
 import { dataSRC } from '../../utils/config';
 import './Profile.css';
+import Loader from '../../utils/Loader';
 
 const displayDataSource = (src) => {
   if (src === 'API') {
@@ -41,43 +42,52 @@ const Profile = () => {
     <>
       <VerticalNavbar />
       <HorizontalNavbar />
-      <main className="profile-main">
-        <h1 className="profile-title">
-          <span>Bonjour </span>
-          <span className="profile-name">{firstName}</span>
-        </h1>
-        <p className="congratulations-text">
-          Félicitation ! Vous avez explosé vos objectifs hier 👏
-        </p>
-        <div className="charts-cards-container">
-          <div className="all-charts-container">
-            <div className="activity-chart">
-              <ActivityChart data={dailyActivities} />
+      {firstName &&
+      dailyActivities &&
+      sessionsDuration &&
+      performanceStats &&
+      todayScore &&
+      dataKeys ? (
+        <main className="profile-main">
+          <h1 className="profile-title">
+            <span>Bonjour </span>
+            <span className="profile-name">{firstName}</span>
+          </h1>
+          <p className="congratulations-text">
+            Félicitation ! Vous avez explosé vos objectifs hier 👏
+          </p>
+          <div className="charts-cards-container">
+            <div className="all-charts-container">
+              <div className="activity-chart">
+                <ActivityChart data={dailyActivities} />
+              </div>
+              <div className="triple-charts">
+                <div className="sessions-chart">
+                  <SessionsLineChart data={sessionsDuration} />
+                </div>
+                <div className="performance-chart">
+                  <PerformanceRadarChart data={performanceStats} />
+                </div>
+                <div className="today-objective-chart">
+                  <TodayObjectiveChart score={todayScore} />
+                </div>
+              </div>
             </div>
-            <div className="triple-charts">
-              <div className="sessions-chart">
-                <SessionsLineChart data={sessionsDuration} />
-              </div>
-              <div className="performance-chart">
-                <PerformanceRadarChart data={performanceStats} />
-              </div>
-              <div className="today-objective-chart">
-                <TodayObjectiveChart score={todayScore} />
-              </div>
+            <div className="cards-container">
+              {dataKeys &&
+                Object.keys(dataKeys).map((key, index) => (
+                  <InfoCard
+                    key={`${key}-${index}`}
+                    type={key.split('Count')[0]}
+                    value={Object.values(dataKeys)[index]}
+                  />
+                ))}
             </div>
           </div>
-          <div className="cards-container">
-            {dataKeys &&
-              Object.keys(dataKeys).map((key, index) => (
-                <InfoCard
-                  key={`${key}-${index}`}
-                  type={key.split('Count')[0]}
-                  value={Object.values(dataKeys)[index]}
-                />
-              ))}
-          </div>
-        </div>
-      </main>
+        </main>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
