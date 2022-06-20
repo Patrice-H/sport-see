@@ -5,6 +5,14 @@ import lipidImg from '../../assets/lipid.png';
 import PropTypes from 'prop-types';
 import './InfoCard.css';
 
+/**
+ * Component that returns a card with an icon and key informations
+ *
+ * @component
+ * @param {string} type - The information type
+ * @param {number} value - The amount
+ * @returns {JSX} The React component.
+ */
 const InfoCard = ({ type, value }) => {
   let imgSrc;
   let cardLegend;

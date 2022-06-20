@@ -2,6 +2,12 @@ import { USER_MAIN_DATA } from '../mock/data';
 import { useFetch } from '../utils/hooks';
 import { dataSRC, URL_API } from '../utils/config';
 
+/**
+ * It returns the user's day score from an API or local JSON file
+ *
+ * @param userId - The user's ID
+ * @returns {number} The score of the day.
+ */
 const GetUserTodayScore = (userId) => {
   let userTodayScore;
   const { data } = useFetch(`${URL_API}/user/${userId}`);
@@ -14,9 +20,10 @@ const GetUserTodayScore = (userId) => {
     const userData = USER_MAIN_DATA.filter(
       (user) => user.id === parseInt(userId)
     );
-    if (userData[0].todayScore !== undefined)
+    if (userData.length > 0 && userData[0].todayScore !== undefined)
       userTodayScore = userData[0].todayScore;
-    if (userData[0].score !== undefined) userTodayScore = userData[0].score;
+    if (userData.length > 0 && userData[0].score !== undefined)
+      userTodayScore = userData[0].score;
   }
 
   return userTodayScore;
