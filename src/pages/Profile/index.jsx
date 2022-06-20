@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ActivityChart from '../../components/ActivityChart';
 import HorizontalNavbar from '../../components/HorizontalNavbar';
 import SessionsLineChart from '../../components/SessionsLineChart';
@@ -14,8 +14,8 @@ import GetUserPerformanceStats from '../../services/GetUserPerformanceStats';
 import GetUserTodayScore from '../../services/GetUserTodayScore';
 import GetUserDataKeys from '../../services/GetUserDataKeys';
 import { dataSRC } from '../../utils/config';
-import './Profile.css';
 import Loader from '../../utils/Loader';
+import './Profile.css';
 
 const displayDataSource = (src) => {
   if (src === 'API') {
@@ -25,8 +25,15 @@ const displayDataSource = (src) => {
   }
 };
 
+const UserIsUndefined = (user) => {
+  if (user === undefined) return true;
+
+  return false;
+};
+
 const Profile = () => {
   const { profileId } = useParams();
+  const navigate = useNavigate();
   const firstName = GetUserFirstName(profileId);
   const dailyActivities = GetUserDailyActivities(profileId);
   const sessionsDuration = GetUserSessionsDuration(profileId);
@@ -36,6 +43,8 @@ const Profile = () => {
 
   useEffect(() => {
     displayDataSource(dataSRC);
+    if (dataSRC !== 'API' && UserIsUndefined(firstName)) navigate('/error404');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
