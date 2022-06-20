@@ -38,9 +38,6 @@ npm run dev
 
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-**Oops ! Something is wrong with the API.**
-Please, go to /app/data.js and change line 24 from `score:0.3` to `todayScore: 0.3`
-
 ### 2. Install the application
 
 - Fork this very repository [here](https://github.com/badbmo/ChloeRuard_12_30032021)
