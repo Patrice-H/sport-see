@@ -3,6 +3,12 @@ import VerticalNavbar from '../../components/VerticalNavbar';
 import HorizontalNavbar from '../../components/HorizontalNavbar';
 import './Home.css';
 
+/**
+ * Component that return the home page
+ *
+ * @component
+ * @returns {JSX} The home page
+ */
 const Home = () => {
   return (
     <>

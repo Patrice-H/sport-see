@@ -11,6 +11,13 @@ import {
 import PropTypes from 'prop-types';
 import './ActivityChart.css';
 
+/**
+ * Custom tooltip formatter
+ *
+ * @param {boolean} active - whether the tooltip is hovered or not
+ * @param {[string]} payload - The array of data
+ * @returns {JSX} The tooltip.
+ */
 const CustomTooltip = ({ active, payload }) => {
   if (active) {
     return (
@@ -24,14 +31,21 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+/**
+ * Custom X axis formatter
+ *
+ * @param {string} tickItem - The day of the month
+ * @returns {number} The number of the day.
+ */
 const xAxisFormatter = (tickItem) => {
   if (tickItem.length > 4) return parseInt(tickItem.split('-')[2]);
 };
 
-const ActivityChartTitle = () => {
-  return <p className="activity-chart-title">Activité quotidienne</p>;
-};
-
+/**
+ * Legend style formatter
+ *
+ * @returns {JSX} The legend.
+ */
 const renderColorfulLegendText = (value) => {
   return (
     <span style={{ color: '#74798c', marginLeft: 8, marginRight: 20 }}>
@@ -40,10 +54,17 @@ const renderColorfulLegendText = (value) => {
   );
 };
 
+/**
+ * Component that returns a chart from daily activities data
+ *
+ * @component
+ * @param {[object]} data - The daily activities data
+ * @returns {JSX} The React component.
+ */
 const ActivityChart = ({ data }) => {
   return (
     <article className="activity-chart-container">
-      <ActivityChartTitle />
+      <p className="activity-chart-title">Activité quotidienne</p>
       <ResponsiveContainer width="100%" aspect={2.6}>
         <BarChart
           data={data}

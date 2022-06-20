@@ -17,6 +17,9 @@ import { dataSRC } from '../../utils/config';
 import Loader from '../../utils/Loader';
 import './Profile.css';
 
+/**
+ * Shows where the data comes from in the console.
+ */
 const displayDataSource = (src) => {
   if (src === 'API') {
     console.log('data from API');
@@ -25,12 +28,24 @@ const displayDataSource = (src) => {
   }
 };
 
+/**
+ * Return if the user is defined or not
+ *
+ * @param {string} user - The user first name
+ * @returns {boolean} True or False
+ */
 const UserIsUndefined = (user) => {
   if (user === undefined) return true;
 
   return false;
 };
 
+/**
+ * Component that return the profile page
+ *
+ * @component
+ * @returns {JSX} The profile page
+ */
 const Profile = () => {
   const { profileId } = useParams();
   const navigate = useNavigate();

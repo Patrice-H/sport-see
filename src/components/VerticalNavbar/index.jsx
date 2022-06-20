@@ -5,6 +5,12 @@ import swimming from '../../assets/swimming.png';
 import weightlifting from '../../assets/weightlifting.png';
 import './VerticalNavbar.css';
 
+/**
+ * Component that returns the left vertical nav bar
+ *
+ * @component
+ * @returns {JSX} The React component.
+ */
 const VerticalNavbar = () => {
   return (
     <div className="vertical-navbar">

@@ -9,12 +9,24 @@ import {
 import PropTypes from 'prop-types';
 import './SessionsLineChart.css';
 
+/**
+ * Custom X axis formatter
+ *
+ * @param {string} tick - The number of the day of the week
+ * @returns {number} The initial of the name of the weekday.
+ */
 const xAxisFormatter = (tick) => {
   const dayNames = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
   return dayNames[tick - 1];
 };
 
+/**
+ * Custom cursor to display the dark rectangle when hovering over the chart
+ *
+ * @param {[number]} points - The cursor coordonates
+ * @returns {JSX} The React component.
+ */
 const CustomCursor = ({ points }) => {
   return (
     <rect
@@ -28,6 +40,13 @@ const CustomCursor = ({ points }) => {
   );
 };
 
+/**
+ * Custom tooltip formatter
+ *
+ * @param {boolean} active - Whether the tooltip is hovered or not
+ * @param {[string]} payload - The array of data
+ * @returns {JSX} The tooltip.
+ */
 const CustomTooltip = ({ active, payload }) => {
   if (active) {
     return (
@@ -40,14 +59,17 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const SessionsChartTitle = () => {
-  return <p className="sessions-chart-title">Durée moyenne des sessions</p>;
-};
-
+/**
+ * Component that returns a chart from daily session data
+ *
+ * @component
+ * @param {[object]} data - The daily session data
+ * @returns {JSX} The React component.
+ */
 const SessionsLineChart = ({ data }) => {
   return (
     <article className="sessions-chart-container">
-      <SessionsChartTitle />
+      <p className="sessions-chart-title">Durée moyenne des sessions</p>
       <ResponsiveContainer width="100%" aspect={0.98}>
         <AreaChart
           data={data}

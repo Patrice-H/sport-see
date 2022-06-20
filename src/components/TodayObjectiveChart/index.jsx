@@ -2,6 +2,13 @@ import { RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 import './TodayObjectiveChart.css';
 
+/**
+ * Component that returns a chart from the score of the day
+ *
+ * @component
+ * @param {[number]} score - The score of the day
+ * @returns {JSX} The React component.
+ */
 const TodayObjectiveChart = ({ score }) => {
   const data = [
     { userScore: 1, fill: '#fbfbfb' },

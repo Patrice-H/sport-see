@@ -9,6 +9,13 @@ import {
 import PropTypes from 'prop-types';
 import './PerformanceRadarChart.css';
 
+/**
+ * Component that returns a chart from performance data
+ *
+ * @component
+ * @param {[object]} data - The performance stats
+ * @returns {JSX} The React component.
+ */
 const PerformanceRadarChart = ({ data }) => {
   let performance = [];
   const angleAxisFormatter = (tick) => {

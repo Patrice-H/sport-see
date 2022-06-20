@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './HorizontalNavbar.css';
 
+/**
+ * Component that returns the top horizontal nav bar
+ *
+ * @component
+ * @returns {JSX} The React component.
+ */
 const HorizontalNavbar = () => {
   return (
     <nav className="horizontal-navbar">
