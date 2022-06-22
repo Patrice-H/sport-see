@@ -29,18 +29,6 @@ const displayDataSource = (src) => {
 };
 
 /**
- * Return if the user is defined or not
- *
- * @param {string} user - The user first name
- * @returns {boolean} True or False
- */
-const UserIsUndefined = (user) => {
-  if (user === undefined) return true;
-
-  return false;
-};
-
-/**
  * Component that return the profile page
  *
  * @component
@@ -56,11 +44,37 @@ const Profile = () => {
   const todayScore = GetUserTodayScore(profileId);
   const dataKeys = GetUserDataKeys(profileId);
 
+  /**
+   * Controls data and redirects to the right error page
+   */
+  const controleError = () => {
+    if (
+      firstName === 404 &&
+      dailyActivities === 404 &&
+      sessionsDuration === 404 &&
+      performanceStats === 404 &&
+      todayScore === 404 &&
+      dataKeys === 404
+    )
+      navigate('/error404');
+    if (
+      firstName === 500 &&
+      dailyActivities === 500 &&
+      sessionsDuration === 500 &&
+      performanceStats === 500 &&
+      todayScore === 500 &&
+      dataKeys === 500
+    )
+      navigate('/error500');
+  };
+
   useEffect(() => {
     displayDataSource(dataSRC);
-    if (dataSRC !== 'API' && UserIsUndefined(firstName)) navigate('/error404');
+    if (dataSRC === 'mocked-data') controleError();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (dataSRC === 'API') controleError();
 
   return (
     <>

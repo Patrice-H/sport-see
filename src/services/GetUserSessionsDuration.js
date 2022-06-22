@@ -12,13 +12,22 @@ import { dataSRC, URL_API } from '../utils/config';
 const GetUserSessionsDuration = (userId) => {
   let sessionDuration;
   const { data } = useFetch(`${URL_API}/user/${userId}/average-sessions`);
-  if (dataSRC === 'API') {
-    if (data !== undefined) sessionDuration = data.data.sessions;
-  } else {
+  if (dataSRC === 'API' && data !== undefined) {
+    if (data === 404 || data === 500) {
+      sessionDuration = data;
+    } else {
+      sessionDuration = data.data.sessions;
+    }
+  }
+  if (dataSRC === 'mocked-data') {
     const userData = USER_AVERAGE_SESSIONS.filter(
       (user) => user.userId === parseInt(userId)
     );
-    if (userData.length > 0) sessionDuration = userData[0].sessions;
+    if (userData.length > 0) {
+      sessionDuration = userData[0].sessions;
+    } else {
+      sessionDuration = 404;
+    }
   }
 
   return sessionDuration;

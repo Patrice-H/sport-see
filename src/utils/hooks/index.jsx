@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { dataSRC } from '../config';
 
 /**
@@ -10,21 +9,19 @@ import { dataSRC } from '../config';
  */
 export const useFetch = (url) => {
   const [data, setData] = useState();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!url || dataSRC !== 'API') return;
     fetch(url)
       .then((response) => {
-        if (response.ok) {
+        if (response.status === 200) {
           response.json().then((data) => setData(data));
         } else {
-          navigate('/error404');
+          setData(response.status);
         }
       })
-      .catch((error) => {
-        navigate('/error500');
-        console.log(error);
+      .catch(() => {
+        setData(500);
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

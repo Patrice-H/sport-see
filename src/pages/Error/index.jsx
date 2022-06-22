@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Error404 from '../../components/Error404';
 import Error500 from '../../components/Error500';
@@ -12,6 +13,13 @@ import './Error.css';
  */
 const Error = () => {
   const errorServer = window.location.href.split('error')[1] === '500';
+  //const navigate = useNavigate();
+
+  useEffect(() => {
+    //if (!errorServer) navigate('/error404');
+    //setTimeout(console.clear(), 5000);
+    console.clear();
+  }, []);
 
   return (
     <section className="error">

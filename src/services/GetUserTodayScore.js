@@ -11,19 +11,31 @@ import { dataSRC, URL_API } from '../utils/config';
 const GetUserTodayScore = (userId) => {
   let userTodayScore;
   const { data } = useFetch(`${URL_API}/user/${userId}`);
-  if (dataSRC === 'API') {
-    if (data !== undefined && data.data.todayScore !== undefined)
-      userTodayScore = data.data.todayScore;
-    if (data !== undefined && data.data.score !== undefined)
-      userTodayScore = data.data.score;
-  } else {
+  if (dataSRC === 'API' && data !== undefined) {
+    if (data === 404 || data === 500) {
+      userTodayScore = data;
+    } else {
+      if (data.data.todayScore !== undefined) {
+        userTodayScore = data.data.todayScore;
+      }
+      if (data.data.score !== undefined) {
+        userTodayScore = data.data.score;
+      }
+    }
+  }
+  if (dataSRC === 'mocked-data') {
     const userData = USER_MAIN_DATA.filter(
       (user) => user.id === parseInt(userId)
     );
-    if (userData.length > 0 && userData[0].todayScore !== undefined)
+    if (userData.length > 0 && userData[0].todayScore !== undefined) {
       userTodayScore = userData[0].todayScore;
-    if (userData.length > 0 && userData[0].score !== undefined)
+    }
+    if (userData.length > 0 && userData[0].score !== undefined) {
       userTodayScore = userData[0].score;
+    }
+    if (userData.length === 0) {
+      userTodayScore = 404;
+    }
   }
 
   return userTodayScore;

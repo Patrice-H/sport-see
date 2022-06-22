@@ -11,13 +11,22 @@ import { dataSRC, URL_API } from '../utils/config';
 const GetUserDataKeys = (userId) => {
   let dataKeys;
   const { data } = useFetch(`${URL_API}/user/${userId}`);
-  if (dataSRC === 'API') {
-    if (data !== undefined) dataKeys = data.data.keyData;
-  } else {
+  if (dataSRC === 'API' && data !== undefined) {
+    if (data === 404 || data === 500) {
+      dataKeys = data;
+    } else {
+      dataKeys = data.data.keyData;
+    }
+  }
+  if (dataSRC === 'mocked-data') {
     const userData = USER_MAIN_DATA.filter(
       (user) => user.id === parseInt(userId)
     );
-    if (userData.length > 0) dataKeys = userData[0].keyData;
+    if (userData.length > 0) {
+      dataKeys = userData[0].keyData;
+    } else {
+      dataKeys = 404;
+    }
   }
 
   return dataKeys;
