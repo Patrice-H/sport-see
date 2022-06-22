@@ -109,7 +109,7 @@ const SessionsLineChart = ({ data }) => {
             axisLine={false}
             tickLine={false}
             hide={true}
-            domain={['dataMin -40', 'dataMax + 40']}
+            domain={['dataMin -50', 'dataMax + 50']}
           />
           <Tooltip
             content={<CustomTooltip />}
