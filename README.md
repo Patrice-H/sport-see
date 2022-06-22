@@ -40,7 +40,7 @@ npm run dev
 
 ### 2. Install the application
 
-- Fork this very repository [here](https://github.com/badbmo/ChloeRuard_12_30032021)
+- Fork this very repository [here](https://github.com/Patrice-H/PatriceHochard_12_30052022)
 - Clone it on your computer.
 - Use yarn or npm to install the dependencies.
 
