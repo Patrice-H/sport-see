@@ -1,4 +1,6 @@
-# SportSee
+![logo](https://github.com/Patrice-H/PatriceHochard_12_30052022/blob/main/src/assets/logo.png)
+
+#
 
 This is project #12 of the OpenClassrooms "Front End Developer" cursus.
 The aim of the project is to develop an analytic dashboard with React.
