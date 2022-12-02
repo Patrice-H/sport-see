@@ -22,9 +22,9 @@ import './Profile.css';
  */
 const displayDataSource = (src) => {
   if (src === 'API') {
-    console.log('data from API');
+    //console.log('data from API');
   } else {
-    console.log('data from mocked data');
+    //console.log('data from mocked data');
   }
 };
 
