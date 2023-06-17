@@ -13,11 +13,8 @@ import './Error.css';
  */
 const Error = () => {
   const errorServer = window.location.href.split('error')[1] === '500';
-  //const navigate = useNavigate();
 
   useEffect(() => {
-    //if (!errorServer) navigate('/error404');
-    //setTimeout(console.clear(), 5000);
     console.clear();
   }, []);
 
